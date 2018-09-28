@@ -1,0 +1,14 @@
+//
+// Created by joaoc on 26/09/2018.
+//
+
+#ifndef AUTOATENDIMENTORODOVIARIO_TERMINAL_H
+#define AUTOATENDIMENTORODOVIARIO_TERMINAL_H
+
+
+class terminal {
+
+};
+
+
+#endif //AUTOATENDIMENTORODOVIARIO_TERMINAL_H
