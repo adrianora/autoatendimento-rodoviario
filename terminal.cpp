@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 #include <array>
+#include <sstream>
 #define ARRAYLEN(arr) (sizeof(arr) / sizeof(arr[0]))
 
 using namespace std;
@@ -40,7 +41,7 @@ vector<string> estDeTempoMinutos = {"131","205","210",
                                     "80","240","126",
                                     "80","205","321"};
 // Funçao que serve para fazer split com ' - ' como separador
-vector<string> split(string codigo){
+/*vector<string> split(string codigo){
     vector<string> result;
     int achou, i = 0;
     while (codigo != "\0") {
@@ -50,6 +51,18 @@ vector<string> split(string codigo){
         codigo.erase(0, achou +1);
         i++; }
     return result; }
+*/
+vector<string> split(const std::string& codigo)
+{
+    char delim = '-';
+    vector<string> result;
+    stringstream ss(codigo);
+    string token;
+    while (std::getline(ss, token, delim)) {
+        result.push_back(token);
+    }
+    return result;
+}
 
 string toString(vector<string> array) {
     for (vector<string>::iterator it = array.begin(); it != array.end() ; it++)
@@ -87,10 +100,7 @@ string destinosEValores() {
         string pegaRota = getCidades(rotas[i]) + " - R$ ";
         pegaRota += to_string(getValores(rotas[i]));
         rotasValores.push_back(pegaRota); }
-    toString(rotasValores);
-    //for (int j = 0; j < rotasValores.size(); ++j) {
-       // cout << rotasValores[j] << "\n"; }
-}
+    toString(rotasValores);  }
 
 // Quando chamada ela retorna todas as rotas do itinerario com tempo em minutos
 string getItinerario() {
