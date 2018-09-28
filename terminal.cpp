@@ -106,4 +106,18 @@ string getEmpresas() {
 // Funcao que calcula taxa de embarque recebendo a quantidade de malas e retorna a taxa
 double getTaxaDeEmbarque(int malas) {
     return malas * taxa; }
-
+// Funcao que retorna informacoes do terminal
+string getInfo(string codigo) {
+    int indice;
+    string result;
+    for(int i = 0; i < sigla.size(); i++) {
+        if(sigla[i] == codigo) {
+            indice = i; }
+    }
+    result += "Terminal Rodoviario de ";
+    result += cidades[indice];
+    result += ". \n";
+    cout << result << "\n";
+    cout << "Empresas disponiveis: " << "\n";
+    cout << getEmpresas() << "\n";
+}
