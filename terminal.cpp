@@ -6,20 +6,22 @@
 #include <stdio.h>
 #include <string>
 #include <vector>
+#include <array>
+#define ARRAYLEN(arr) (sizeof(arr) / sizeof(arr[0]))
 
 using namespace std;
 
 // taxa padrão para cobrança de embarque
 const double taxa = 1.5;
 // lista de cidades disponiveis onde há terminais
-string cidades[4] = {"Campina Grande","João Pessoa","Sousa","Monteiro"};
+string cidades[4] = {"Campina Grande","Joao Pessoa","Sousa","Monteiro"};
 // sigla é usado assim para melhor busca e iteração
 string sigla[4] = {"CG", "JP", "SS", "MT"};
 /* lista de empresas disponiveis, cada empresa é responsavel por determinadas rotas
  * note que o index de empresas interage com o index de valores e rotaEmpresas
  * sendo cada index de rotaEmpresas as rotas que cada empresa é responsavel
   */
-string empresas[4] = {"Real Bus", "Viação São José", "Pontual Transporte", "Travel Bus"};
+string empresas[4] = {"Real Bus", "Viacao Sao Jose", "Pontual Transporte", "Travel Bus"};
 // O index de rotas equivale com o index de estDeTempoMinutos para iteração
 vector<string> rotas = {"MT - CG", "MT - JP", "MT - SS",
                         "SS - CG", "SS - JP", "SS - MT",
@@ -49,6 +51,10 @@ vector<string> split(string codigo){
         i++; }
     return result; }
 
+string toString(vector<string> array) {
+    for (vector<string>::iterator it = array.begin(); it != array.end() ; it++)
+        cout << *it << "\n"; }
+
 // Recebe as siglas concatenadas com '-', faz uso do metodo privado split e a busca pela cidade
 string getCidades(string codigo) {
     vector<string> sepSigla = split(codigo);
@@ -75,33 +81,35 @@ double getValores(string sigla) {
     }
 }
 // Imprime uma lista de rotas com seus respectivos valores
-string DestinosEValores() {
+string destinosEValores() {
     vector<string> rotasValores;
     for (int i = 0; i < rotas.size(); i++) {
-        string pegaRota = getCidades(rotas[i]);
-        pegaRota += " - R$";
-        pegaRota += getValores(rotas[i]);
+        string pegaRota = getCidades(rotas[i]) + " - R$ ";
+        pegaRota += to_string(getValores(rotas[i]));
         rotasValores.push_back(pegaRota); }
-    for (int j = 0; j < rotasValores.size(); ++j) {
-        cout << rotasValores[j] << "\n"; }
+    toString(rotasValores);
+    //for (int j = 0; j < rotasValores.size(); ++j) {
+       // cout << rotasValores[j] << "\n"; }
 }
 
 // Quando chamada ela retorna todas as rotas do itinerario com tempo em minutos
-string itinerario() {
+string getItinerario() {
     vector<string> itinerarios;
+
     for (int i = 0; i < rotas.size() ; i++) {
         string itn = getCidades(rotas[i]);
         itn+= " - ";
         itn += estDeTempoMinutos[i];
         itn += " minutos";
         itinerarios.push_back(itn); }
-    for (int j = 0; j < itinerarios.size() ; ++j) {
-        cout << itinerarios[j] << "\n"; }
+    toString(itinerarios);
 }
 // Funcao que imprime a empresas disponiveis
 string getEmpresas() {
-    for (int i = 0; i < empresas->size() ; i++) {
-        cout << empresas[i] << "\n"; }
+    vector<string> emp;
+    for (int i = 0; i < ARRAYLEN(empresas) ; i++) {
+        emp.push_back(empresas[i]); }
+    toString(emp);
 }
 // Funcao que calcula taxa de embarque recebendo a quantidade de malas e retorna a taxa
 double getTaxaDeEmbarque(int malas) {
@@ -110,14 +118,14 @@ double getTaxaDeEmbarque(int malas) {
 string getInfo(string codigo) {
     int indice;
     string result;
-    for(int i = 0; i < sigla.size(); i++) {
+    for(int i = 0; i < (sizeof(sigla) / sizeof(sigla[0])); i++) {
         if(sigla[i] == codigo) {
             indice = i; }
     }
+
     result += "Terminal Rodoviario de ";
-    result += cidades[indice];
-    result += ". \n";
+    result += cidades[indice] + ". \n";
     cout << result << "\n";
     cout << "Empresas disponiveis: " << "\n";
-    cout << getEmpresas() << "\n";
+    getEmpresas();
 }
