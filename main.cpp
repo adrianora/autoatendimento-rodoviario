@@ -55,14 +55,13 @@ void login() {
     cin >> senha;
 
 	for (int i = 0; i <= id_user; i++) {
-        if (usuario.compare(user[i]) == 0 && senha.compare(user[i])) {
+        if (usuario.compare(user[i]) == 0 && senha.compare(user[i]) == 0) {
 			user_logged = i;
             cout << "Usuario validado com sucesso" << endl;
             main();
          }
     }
 
-	void login();
 	cout << "\nUsuario nao cadastrado!" << endl;
 	cout << "1. Tentar novamente" << endl;
 	cout << "2. Voltar" << endl;
@@ -87,17 +86,48 @@ void login() {
 
 void subscribe()
 {
-	void login();
-
+    string new_user, new_pass;
+    
     cout << "Digite seus dados para efetuar o cadastro:\n" << endl;
     cout << "Usuario:";
-    cin >> user[id_user];
+    cin >> new_user;
     cout << "Senha:";
-    cin >> pass[id_user];
-
-    id_user += 1;
-
-    cout << "Cadastro efetuado com sucesso: \n" << endl;
-
-    login();
+    cin >> new_pass;
+    
+    for (int i = 0; i <= id_user; i++) {
+        if (new_user.compare(user[i]) == 0) {
+            cout << "\nUsuario ja existe no sistema!" << endl;
+            cout << "1. Tentar novamente" << endl;
+            cout << "2. Voltar" << endl;
+            cout << "\nOpcao: " << endl;
+            cin >> option;
+            
+            do {
+                switch(option) {
+                    case 1:
+                        subscribe();
+                        break;
+                    case 2:
+                        main();
+                        break;
+                    default:
+                        cout << "Opcao invalida!" << endl;
+                        break;
+                }
+            } while (option != 2);
+        
+            
+    }
+    
+    user[id_user] = new_user;
+    pass[id_user] = new_pass;
+    id_user ++;
+    cout << "\nCadastro efetuado com sucesso!" << endl;
+        
+    main();
+    
+    
 }
+}
+
+
