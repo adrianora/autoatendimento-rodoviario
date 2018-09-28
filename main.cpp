@@ -19,7 +19,7 @@ int main() {
 	cout << "======================" << endl;
 	cout << "----- Bem vindo! -----" << endl;
 	cout << "======================" << endl;
-	cout << "Terminais disponíveis:" << endl;
+	cout << "Terminais disponiveis:" << endl;
 	cout << "1. Login" << endl;
     cout << "2. Cadastro" << endl;
 	cout << "3. Sair do terminal" << endl;
@@ -49,7 +49,7 @@ void login() {
     string usuario, senha;
     
     cout << "Digite suas credenciais:" << endl;
-    cout << "Usuário: ";
+    cout << "Usuario: ";
     cin >> usuario;
     cout << "Senha: ";
     cin >> senha;
@@ -57,13 +57,13 @@ void login() {
 	for (int i = 0; i <= id_user; i++) {
         if (usuario.compare(user[i]) == 0 && senha.compare(user[i])) {
 			user_logged = i;
-            cout << "Usuário validado com sucesso" << endl;
+            cout << "Usuario validado com sucesso" << endl;
             main();
          }
     }
 
 	void login();
-	cout << "\nUsuário não cadastrado!" << endl;
+	cout << "\nUsuario nao cadastrado!" << endl;
 	cout << "1. Tentar novamente" << endl;
 	cout << "2. Voltar" << endl;
 	
@@ -90,7 +90,7 @@ void subscribe()
 	void login();
 
     cout << "Digite seus dados para efetuar o cadastro:\n" << endl;
-    cout << "Usuário:";
+    cout << "Usuario:";
     cin >> user[id_user];
     cout << "Senha:";
     cin >> pass[id_user];
