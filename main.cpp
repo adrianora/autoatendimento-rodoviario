@@ -24,6 +24,7 @@ int main() {
     cout << "2. Cadastro" << endl;
 	cout << "3. Sair do terminal" << endl;
 	do {
+	    cout << "\nOpcao: ";
 		cin >> option;
 		switch(option) {
 			case 1:
@@ -35,6 +36,9 @@ int main() {
 			case 3:
 				cout << "Volte sempre!\n";
 				break;
+			default:
+			    cout << "Opcao invalida!" << endl;
+			    break;
 		}
 	} while (option != 3);
 }
@@ -59,8 +63,26 @@ void login() {
     }
 
 	void login();
-	cout << "Usuário não cadastrado. Tente novamente." << endl;
-	main();
+	cout << "\nUsuário não cadastrado!" << endl;
+	cout << "1. Tentar novamente" << endl;
+	cout << "2. Voltar" << endl;
+	
+	do {
+	    cout << "\nOpcao: ";
+	    cin >> option;
+	    
+	    switch(option) {
+	        case 1:
+	            login();
+	            break;
+	        case 2:
+	            main();
+	            break;
+	        default:
+	            cout << "Opcao invalida!" << endl;
+	            break;
+	    }
+	} while (option != 2);
 }
 
 void subscribe()
@@ -79,4 +101,3 @@ void subscribe()
 
     login();
 }
-
