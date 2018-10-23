@@ -1,6 +1,29 @@
 import System.IO
 import Data.List
 
+main:: IO()
+main = do
+  mensagemBoasVindas
+  escolhaTerminal
+  entrada <- getLine
+  if entrada == "1" then putStrLn "novo" else putStrLn "ilin"
+
+usuariosCadastrados:: [String]
+usuariosCadastrados = []
+
+addUsuario:: String -> [String] -> [String]
+addUsuario user list = user:list
+
+usuarioLogado:: String
+usuarioLogado = ""
+
+mensagemBoasVindas = putStrLn "======================\n----- Bem vindo! -----\n======================"
+
+escolhaTerminal = putStrLn "Em qual terminal você se encontra?\n1. MONTEIRO\n2. CAMPINA GRANDE\n3. JOAO PESSOA\n4. SOUSA\n======================\nOpção:"
+
+
+-- TERMINAL
+
 cidades = [("MT","MONTEIRO"),("CG","CAMPINA GRANDE"),("JP","JOAO PESSOA"),("SS","SOUSA")]
 
 
@@ -55,7 +78,7 @@ getValoresByCodigo (sigla1,sigla2) siglaRota
       | (sigla2 == siglaRota) = 2
       | otherwise = 0
 
-getRota [] sigla _ = 0
-getRota (x:xs) sigla cont
-  | ((getValoresByCodigo x sigla) == 0) = cont + (getRota xs sigla cont++)
-  | otherwise = (getValoresByCodigo x sigla) + getRota xs sigla cont++
+--getRota [] sigla _ = 0
+--getRota (x:xs) sigla cont
+--  | ((getValoresByCodigo x sigla) == 0) = cont + (getRota xs sigla cont++)
+--  | otherwise = (getValoresByCodigo x sigla) + getRota xs sigla cont++
