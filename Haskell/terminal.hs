@@ -57,6 +57,7 @@ lista (x:xs) sigla
 concatenate:: [String] -> String -- metodo auxiliar
 concatenate cidades = intercalate " - " cidades
 
+-- PARA ACESSO DIGITAR SIGLA SEM ESPACO ENTRE AS SIGLAS DE CADA CIDADE EX.: "CG-SS" E NÃO "CG - SS"
 getCidadeFinal:: String -> String
 getCidadeFinal codigoByUsuario =
   concatenate (lista cidades (split codigoByUsuario))
@@ -85,12 +86,13 @@ retornaPrecos sigla
       | (searchRota rotas sigla) <= 6 = 32.0
       | otherwise = 35.0
 
-destinosEValores :: (String,String) -> [String]
+
+destinosEValores :: (String,String) -> [String] -- metodo auxiliar
 destinosEValores (sigla1, sigla2) =
       [getCidadeFinal sigla1 ++ " - R$ " ++ show (retornaPrecos sigla1)] ++ [getCidadeFinal sigla2 ++ " - R$ " ++ show (retornaPrecos sigla2)]
 
 
-listaRotas [] = []
+listaRotas [] = [] -- FUNCAO FINAL A SER UTILIZADA, ENTRADA É A LISTA 'ROTAS'
 listaRotas (x:xs) = destinosEValores x : listaRotas xs
 
 getTaxaDeEmbarque :: Int -> Float
@@ -101,5 +103,5 @@ getNomeCidade (x:xs) sigla
       | sigla == (busca_prim x) = busca_sec x
       | otherwise = getNomeCidade xs sigla
 
-getInfo :: String -> String
+getInfo :: String -> String -- -- FUNCAO FINAL A SER UTILIZADA, ENTRADA É A SIGLA DO TERMINAL DE ONDE ESTA SENDO FEITA A OPERACAO, EX.: "CG"
 getInfo codigo = "Terminal Rodoviario de " ++ (getNomeCidade cidades codigo) ++ " Empresas disponiveis: Real Bus, Viacao Sao Jose, Pontual Transporte, Travel Bus"
