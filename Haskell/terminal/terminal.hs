@@ -79,7 +79,7 @@ searchRota (x:xs) sigla -- metodo auxiliar
       | (getValoresByCodigo x sigla) == 0 = 1 + (searchRota xs sigla)
       | otherwise = 1 + (getValoresByCodigo x sigla)
 
-retornaPrecos:: String -> Float -- metodo auxiliar
+retornaPrecos:: String -> Float -- O VALOR A SER DADO PARA ACESSO DO METODO É A SIGLA DA ROTA QUE O USUARIO IRÁ PERCORRER. EX.: "CG-JP", "SS-MT"
 retornaPrecos sigla
       | (searchRota rotas sigla) <= 3 = 26.0
       | (searchRota rotas sigla) <= 5 = 28.0
@@ -92,10 +92,10 @@ destinosEValores (sigla1, sigla2) =
       [getCidadeFinal sigla1 ++ " - R$ " ++ show (retornaPrecos sigla1)] ++ [getCidadeFinal sigla2 ++ " - R$ " ++ show (retornaPrecos sigla2)]
 
 
-listaRotas [] = [] -- FUNCAO FINAL A SER UTILIZADA, ENTRADA É A LISTA 'ROTAS'
-listaRotas (x:xs) = destinosEValores x : listaRotas xs
+listaRotas = ["MONTEIRO - CAMPINA GRANDE - R$ 26.0","CAMPINA GRANDE -  MONTEIRO - R$ 26.0","CAMPINA GRANDE - JOAO PESSOA - R$ 26.0","JOAO PESSOA - CAMPINA GRANDE - R$ 28.0","MONTEIRO - JOAO PESSOA - R$ 28.0","JOAO PESSOA - MONTEIRO - R$ 28.0","MONTEIRO - SOUSA - R$ 28.0","SOUSA - MONTEIRO - R$ 32.0","CAMPINA GRANDE - SOUSA - R$ 32.0","SOUSA - CAMPINA GRANDE - R$ 35.0","JOAO PESSOA - SOUSA - R$ 35.0"," SOUSA - JOAO PESSOA - R$ 35.0"]
+getRotasComValores = toString listaRotas -- METODO QUE PRINTA TODAS AS ROTAS COM VALORES, NENHUM PARAMETRO DE ENTRADA É NECESSARIO
 
-getTaxaDeEmbarque :: Int -> Float
+getTaxaDeEmbarque :: Int -> Float -- INFORMAR A QUANTIDADE DE MALAS
 getTaxaDeEmbarque qtdMalas = fromIntegral (qtdMalas) * taxa
 
 getNomeCidade [] sigla = []
